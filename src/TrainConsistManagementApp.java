@@ -4,18 +4,12 @@ public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
-        List<String> bogies = new ArrayList<>();
+        Set<String> bogieIds = new HashSet<>();
 
-        bogies.add("Sleeper");
-        bogies.add("AC Chair");
-        bogies.add("First Class");
+        bogieIds.add("BG101");
+        bogieIds.add("BG102");
+        bogieIds.add("BG101"); // duplicate
 
-        System.out.println("After Adding: " + bogies);
-
-        bogies.remove("AC Chair");
-
-        System.out.println("After Removing: " + bogies);
-
-        System.out.println("Contains Sleeper? " + bogies.contains("Sleeper"));
+        System.out.println("Unique Bogie IDs: " + bogieIds);
     }
 }
