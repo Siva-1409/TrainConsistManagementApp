@@ -1,15 +1,26 @@
-import java.util.regex.*;
+import java.util.*;
 
 public class TrainConsistManagementApp {
 
+    static class GoodsBogie {
+        String shape, cargo;
+
+        GoodsBogie(String s, String c) {
+            shape = s;
+            cargo = c;
+        }
+    }
+
     public static void main(String[] args) {
-        String trainId = "TRN-1234";
-        String cargo = "CRG-567";
+        List<GoodsBogie> list = Arrays.asList(
+                new GoodsBogie("Cylindrical", "Petroleum"),
+                new GoodsBogie("Rectangular", "Coal")
+        );
 
-        boolean trainValid = Pattern.matches("TRN-\\d{4}", trainId);
-        boolean cargoValid = Pattern.matches("CRG-\\d{3}", cargo);
+        boolean safe = list.stream().allMatch(b ->
+                !(b.shape.equals("Cylindrical") && !b.cargo.equals("Petroleum"))
+        );
 
-        System.out.println(trainValid);
-        System.out.println(cargoValid);
+        System.out.println("Safe: " + safe);
     }
 }
