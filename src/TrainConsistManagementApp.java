@@ -2,25 +2,19 @@ import java.util.*;
 
 public class TrainConsistManagementApp {
 
-    static class GoodsBogie {
-        String shape, cargo;
-
-        GoodsBogie(String s, String c) {
-            shape = s;
-            cargo = c;
-        }
-    }
-
     public static void main(String[] args) {
-        List<GoodsBogie> list = Arrays.asList(
-                new GoodsBogie("Cylindrical", "Petroleum"),
-                new GoodsBogie("Rectangular", "Coal")
-        );
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 100000; i++) list.add(i);
 
-        boolean safe = list.stream().allMatch(b ->
-                !(b.shape.equals("Cylindrical") && !b.cargo.equals("Petroleum"))
-        );
+        long start = System.nanoTime();
+        int sum = 0;
+        for (int i : list) sum += i;
+        long end = System.nanoTime();
+        System.out.println("Loop: " + (end - start));
 
-        System.out.println("Safe: " + safe);
+        start = System.nanoTime();
+        int sum2 = list.stream().mapToInt(i -> i).sum();
+        end = System.nanoTime();
+        System.out.println("Stream: " + (end - start));
     }
 }
