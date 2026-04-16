@@ -1,25 +1,26 @@
 import java.util.*;
-import java.util.stream.*;
 
 public class TrainConsistManagementApp {
 
     static class Bogie {
-        String type;
+        int capacity;
 
-        Bogie(String type) {
-            this.type = type;
+        Bogie(int capacity) {
+            this.capacity = capacity;
         }
     }
 
     public static void main(String[] args) {
         List<Bogie> list = Arrays.asList(
-                new Bogie("Sleeper"),
-                new Bogie("AC"),
-                new Bogie("Sleeper")
+                new Bogie(72),
+                new Bogie(56),
+                new Bogie(24)
         );
-        Map<String, List<Bogie>> map =
-                list.stream().collect(Collectors.groupingBy(b -> b.type));
 
-        System.out.println(map);
+        int total = list.stream()
+                .map(b -> b.capacity)
+                .reduce(0, Integer::sum);
+
+        System.out.println("Total Seats: " + total);
     }
 }
