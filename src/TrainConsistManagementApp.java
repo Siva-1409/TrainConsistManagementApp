@@ -4,28 +4,22 @@ import java.util.stream.*;
 public class TrainConsistManagementApp {
 
     static class Bogie {
-        String name;
-        int capacity;
+        String type;
 
-        Bogie(String name, int capacity) {
-            this.name = name;
-            this.capacity = capacity;
-        }
-
-        public String toString() {
-            return name + " - " + capacity;
+        Bogie(String type) {
+            this.type = type;
         }
     }
 
     public static void main(String[] args) {
-        List<Bogie> bogies = Arrays.asList(
-                new Bogie("Sleeper", 72),
-                new Bogie("AC Chair", 56),
-                new Bogie("First Class", 24)
+        List<Bogie> list = Arrays.asList(
+                new Bogie("Sleeper"),
+                new Bogie("AC"),
+                new Bogie("Sleeper")
         );
+        Map<String, List<Bogie>> map =
+                list.stream().collect(Collectors.groupingBy(b -> b.type));
 
-        bogies.stream()
-                .filter(b -> b.capacity > 50)
-                .forEach(System.out::println);
+        System.out.println(map);
     }
 }
