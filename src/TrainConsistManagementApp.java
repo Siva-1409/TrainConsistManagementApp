@@ -1,12 +1,18 @@
-import java.util.*;
-
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
-        String[] arr = {"Sleeper", "AC Chair", "First Class"};
+        String[] arr = {"BG101", "BG205", "BG309"};
+        String key = "BG309";
 
-        Arrays.sort(arr);
+        boolean found = false;
 
-        System.out.println(Arrays.toString(arr));
+        for (String id : arr) {
+            if (id.equals(key)) {
+                found = true;
+                break;
+            }
+        }
+
+        System.out.println(found ? "Found" : "Not Found");
     }
 }
