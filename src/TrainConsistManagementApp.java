@@ -1,23 +1,23 @@
 public class TrainConsistManagementApp {
 
-    static class InvalidCapacityException extends Exception {
-        InvalidCapacityException(String msg) {
+    static class CargoException extends RuntimeException {
+        CargoException(String msg) {
             super(msg);
-        }
-    }
-
-    static class Bogie {
-        Bogie(int capacity) throws InvalidCapacityException {
-            if (capacity <= 0)
-                throw new InvalidCapacityException("Invalid Capacity");
         }
     }
 
     public static void main(String[] args) {
         try {
-            new Bogie(-5);
+            String shape = "Rectangular";
+            String cargo = "Petroleum";
+
+            if (shape.equals("Rectangular") && cargo.equals("Petroleum"))
+                throw new CargoException("Unsafe!");
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Done");
         }
     }
 }
