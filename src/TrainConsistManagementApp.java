@@ -1,23 +1,20 @@
+import java.util.*;
+
 public class TrainConsistManagementApp {
 
-    static class CargoException extends RuntimeException {
-        CargoException(String msg) {
-            super(msg);
-        }
-    }
-
     public static void main(String[] args) {
-        try {
-            String shape = "Rectangular";
-            String cargo = "Petroleum";
+        int[] arr = {72, 56, 24};
 
-            if (shape.equals("Rectangular") && cargo.equals("Petroleum"))
-                throw new CargoException("Unsafe!");
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            System.out.println("Done");
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int t = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = t;
+                }
+            }
         }
+
+        System.out.println(Arrays.toString(arr));
     }
 }
